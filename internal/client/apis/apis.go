@@ -601,6 +601,7 @@ func importAPIProxies(wg *sync.WaitGroup, jobs <-chan string, errs chan<- error)
 			errs <- err
 			continue
 		}
+		fmt.Println("request: ", u.String())
 		req, err := http.NewRequest(http.MethodPost, u.String(), reqBody)
 		if err != nil {
 			errs <- err
@@ -613,6 +614,7 @@ func importAPIProxies(wg *sync.WaitGroup, jobs <-chan string, errs chan<- error)
 		}
 		req.Header.Add("Content-Type", w.FormDataContentType())
 
+		fmt.Println("request: ", req)
 		resp, err := apiclient.ApigeeAPIClient.Do(req)
 		if err != nil {
 			errs <- err
