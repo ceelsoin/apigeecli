@@ -630,7 +630,7 @@ func importAPIProxies(wg *sync.WaitGroup, jobs <-chan string, errs chan<- error)
 			return
 		}
 
-		fmt.Println("resp body: ", data)
+		fmt.Println("response: ", data)
 
 		if err != nil || resp.StatusCode < 200 || resp.StatusCode >= 300 {
 			errs <- fmt.Errorf("bundle not imported: (HTTP %v) %s", resp.StatusCode, b)
