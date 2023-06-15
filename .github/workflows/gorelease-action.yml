@@ -67,3 +67,8 @@ jobs:
         with:
           name: apigeecli
           path: dist/*
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: apigeecli
+          path: dist/*
