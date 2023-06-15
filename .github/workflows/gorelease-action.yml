@@ -45,9 +45,9 @@ jobs:
           sudo apt-get install -y upx
           export GPG_TTY=$(tty)
 
-      - name: Import GPG key
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v5
+      # - name: Import GPG key
+        # id: import_gpg
+        # uses: crazy-max/ghaction-import-gpg@v5
         # with:
           # gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           # passphrase: ${{ secrets.PASSPHRASE }}
@@ -58,9 +58,9 @@ jobs:
           distribution: goreleaser
           version: latest
           args: release --rm-dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-          GPG_FINGERPRINT: ${{ secrets.FINGERPRINT }}
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          # GPG_FINGERPRINT: ${{ secrets.FINGERPRINT }}
 
       - name: Upload assets
         uses: actions/upload-artifact@v3
