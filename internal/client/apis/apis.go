@@ -622,6 +622,16 @@ func importAPIProxies(wg *sync.WaitGroup, jobs <-chan string, errs chan<- error)
 		if err != nil {
 			b = []byte(err.Error())
 		}
+
+		var data map[string]interface{}
+		err = json.Unmarshal(b, &data)
+		if err != nil {
+			fmt.Println("Erro ao decodificar o JSON:", err)
+			return
+		}
+
+		fmt.Println("resp body: ", data)
+
 		if err != nil || resp.StatusCode < 200 || resp.StatusCode >= 300 {
 			errs <- fmt.Errorf("bundle not imported: (HTTP %v) %s", resp.StatusCode, b)
 			continue
